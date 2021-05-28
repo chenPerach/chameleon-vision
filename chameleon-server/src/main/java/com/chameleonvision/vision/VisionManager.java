@@ -55,6 +55,7 @@ public class VisionManager {
         }
 
         if (usbCameraInfosByCameraName.isEmpty()) {
+            System.err.println("[Vision Manager] No cameras connected!");
             return false;
         }
         System.out.printf("[VisionManager] Found %s cameras!\n", usbCameraInfosByCameraName.size());

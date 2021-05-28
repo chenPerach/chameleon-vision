@@ -110,10 +110,10 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> ScriptManager.queueEvent(ScriptEventType.kProgramExit)));
 
         if (CurrentPlatform.equals(Platform.UNSUPPORTED)) {
-            System.err.printf("Sorry, this platform is not supported. Give these details to the developers.\n%s\n", CurrentPlatform.toString());
+            System.err.printf("Sorry, this platform is not supported. Give these details to the developers.\n%s\n", CurrentPlatform);
             return;
         } else {
-            System.out.printf("Starting Chameleon Vision on platform %s\n", CurrentPlatform.toString());
+            System.out.printf("Starting Chameleon Vision on platform %s\n", CurrentPlatform);
         }
 
         handleArgs(args);
@@ -160,14 +160,10 @@ public class Main {
 
         ScriptManager.queueEvent(ScriptEventType.kProgramInit);
 
-        boolean visionSourcesOk = VisionManager.initializeSources();
-        if (!visionSourcesOk) {
-            System.err.println("No cameras connected!");
-            return;
-        }
+        if (!VisionManager.initializeSources()) return;
 
-        boolean visionProcessesOk = VisionManager.initializeProcesses();
-        if (!visionProcessesOk) {
+
+        if (!VisionManager.initializeProcesses()) {
             System.err.println("Failed to initialize vision processes!");
             return;
         }
