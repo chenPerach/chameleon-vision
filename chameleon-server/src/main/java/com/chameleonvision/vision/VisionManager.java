@@ -1,5 +1,7 @@
 package com.chameleonvision.vision;
 
+import com.chameleonvision.Debug.Colors;
+import com.chameleonvision.Debug.Logger;
 import com.chameleonvision.config.CameraConfig;
 import com.chameleonvision.config.CameraJsonConfig;
 import com.chameleonvision.config.ConfigManager;
@@ -53,7 +55,7 @@ public class VisionManager {
                 usbCameraInfosByCameraName.put(name, info);
             }
         }
-
+        Logger.Log("testInfo", Colors.kYellow);
         if (usbCameraInfosByCameraName.isEmpty()) {
             System.err.println("[Vision Manager] No cameras connected!");
             return false;

@@ -1,6 +1,6 @@
 package com.chameleonvision.scripting;
 
-import com.chameleonvision.Debug;
+import com.chameleonvision.Debug.Logger;
 import com.chameleonvision.util.ShellExec;
 
 import java.io.IOException;
@@ -23,9 +23,9 @@ public class ScriptEvent {
         if (!error.isEmpty()) {
             System.err.printf("Error when running \"%s\" script: %s\n", config.eventType.name(), error);
         } else if (!output.isEmpty()) {
-            Debug.printInfo(String.format("Output from \"%s\" script: %s\n", config.eventType.name(), output));
+            Logger.Log(String.format("Output from \"%s\" script: %s\n", config.eventType.name(), output));
         }
-        Debug.printInfo(String.format("Script for %s ran with command line: \"%s\", exit code: %d, output: %s, error: %s\n", config.eventType.name(), config.command, retVal, output, error));
+        Logger.Log(String.format("Script for %s ran with command line: \"%s\", exit code: %d, output: %s, error: %s\n", config.eventType.name(), config.command, retVal, output, error));
         return retVal;
     }
 }

@@ -1,6 +1,5 @@
 package com.chameleonvision.vision;
 
-import com.chameleonvision.Debug;
 import com.chameleonvision.config.CameraCalibrationConfig;
 import com.chameleonvision.config.CameraConfig;
 import com.chameleonvision.config.ConfigManager;
@@ -356,7 +355,9 @@ public class VisionProcess {
                     var currentTime = System.currentTimeMillis();
                     if ((currentTime - lastStreamTimeMs) / 1000d > 1.0 / 30.0) {
                         if(lastPipelineResult != null) {
-                            cameraStreamer.runStream(lastPipelineResult.outputMat);
+                            try {
+                                cameraStreamer.runStream(lastPipelineResult.outputMat);
+                            }catch (Exception e){}
                             lastStreamTimeMs = currentTime;
                             lastPipelineResult.outputMat.release();
                         } else {

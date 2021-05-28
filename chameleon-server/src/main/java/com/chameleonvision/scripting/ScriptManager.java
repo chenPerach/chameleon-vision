@@ -1,6 +1,6 @@
 package com.chameleonvision.scripting;
 
-import com.chameleonvision.Debug;
+import com.chameleonvision.Debug.Logger;
 import com.chameleonvision.config.ConfigManager;
 import com.chameleonvision.util.JacksonHelper;
 import com.chameleonvision.util.LoopingRunnable;
@@ -115,7 +115,7 @@ public class ScriptManager {
         if (!Platform.getCurrentPlatform().isWindows()) {
             try {
                 queuedEvents.putLast(eventType);
-                Debug.printInfo("Queued event: " + eventType.name());
+                Logger.Log("Queued event: " + eventType.name());
             } catch (InterruptedException e) {
                 System.err.println("Failed to add event to queue: " + eventType.name());
             }

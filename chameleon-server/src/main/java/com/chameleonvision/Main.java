@@ -1,5 +1,6 @@
 package com.chameleonvision;
 
+import com.chameleonvision.Debug.Logger;
 import com.chameleonvision.config.ConfigManager;
 import com.chameleonvision.network.NetworkManager;
 import com.chameleonvision.networktables.NetworkTablesManager;
@@ -38,7 +39,6 @@ public class Main {
         for (int i = 0; i < args.length; i++) {
             var key = args[i].toLowerCase();
             String value = null;
-
             // this switch handles arguments with a value. Add any settings with a value here.
             switch (key) {
                 case NT_CLIENTMODESERVER_KEY:

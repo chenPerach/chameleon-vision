@@ -45,8 +45,8 @@ public class CameraStreamer {
             this.streamBuffer = new Mat(newWidth, newHeight, CvType.CV_8UC3);
             VideoMode oldVideoMode = cvSource.getVideoMode();
             cvSource.setVideoMode(new VideoMode(oldVideoMode.pixelFormat,
-                    cameraCapture.getProperties().getStaticProperties().imageWidth / divisor.value,
-                    cameraCapture.getProperties().getStaticProperties().imageHeight / divisor.value,
+                    cameraCapture.getProperties().getStaticProperties().imageWidth ,
+                    cameraCapture.getProperties().getStaticProperties().imageHeight ,
                     oldVideoMode.fps));
         }
         if (updateUI) {
@@ -80,11 +80,15 @@ public class CameraStreamer {
         }
 
         if (divisor.value != 1) {
+            Size newSize = new Size(
+                    cameraCapture.getProperties().getStaticProperties().imageWidth / divisor.value,
+                    cameraCapture.getProperties().getStaticProperties().imageHeight / divisor.value
+            );
 //            var camVal = cameraProcess.getProperties().staticProperties;
 //            var newWidth = camVal.imageWidth / divisor.value;
 //            var newHeight = camVal.imageHeight / divisor.value;
 //            Size newSize = new Size(newWidth, newHeight);
-             Imgproc.resize(streamBuffer, streamBuffer, this.size);
+             Imgproc.resize(streamBuffer, streamBuffer,newSize);
         }
         cvSource.putFrame(streamBuffer);
     }
